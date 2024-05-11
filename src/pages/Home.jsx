@@ -67,14 +67,22 @@ const Home = () => {
   const closeModal = () => {
     setShowModal(false);
   };
-
   const getInitials = (groupName) => {
     if (typeof groupName !== "string") {
       return "";
     }
-    const words = groupName.split(" ");
-    const initials = words.map((word) => word.charAt(0));
-    return initials.join("");
+
+    const upperCaseGroupName = groupName.toUpperCase();
+    const words = upperCaseGroupName.split(" ");
+    let initials;
+
+    if (words.length === 1) {
+      initials = words[0].charAt(0) + words[0].charAt(1);
+    } else {
+      initials = words.map((word) => word.charAt(0)).join("");
+    }
+
+    return initials;
   };
 
   const goBack = () => {
